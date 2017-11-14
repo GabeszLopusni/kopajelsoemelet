@@ -5,14 +5,14 @@ session_start();
 header ('Content-type: text/html; charset=utf-8');
 
 if(!isset($_SESSION['user_id'])){
-   header("Location: http://".$_SERVER['HTTP_HOST']."/kopaj/index.php");
+   header("Location: http://".$_SERVER['HTTP_HOST']."/bosch/index.php");
    session_destroy();
 }
 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname="kopaj_admin";
+$dbname="bosch_admin";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -31,29 +31,51 @@ if(isset($_POST['logout'])){
     <title>Admin felület Bosch</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="ckeditor/ckeditor.js"></script>   
+    <script src="ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
 </head>
 <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">KOPAJ</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Admin</a></li>
+		   <div class="nav pull-right">
+		    <form action="index.php" method="post">   
+				<input class="btn btn-default" type="submit" name="logout" value="Kijelentkezés">
+			</form>
+          </button>
+        </div>
+        </ul>
+      </div>
+    </nav>
     <h1> Üdvözöllek az admin felületen!</h1>
-    <form action="index.php" method="post">   
-    <input type="submit" name="logout" value="Kijelentkezés">
-    </form>
-
     <form action="newSite.php" method="post">
+	<div class = "row">
+	<div class = "col-md-offset-5 col-md-3">
         <label>Új aloldal létrehozása</label>
         <br>
-        <input type="text" name="title" placeholder="Új oldal címe">
-        <br>
-        <input type="submit" name="sub_uj_oldal" value="Létrehozás">
+        <input type="text" class="form-control input-sm chat-input" name="title" placeholder="Új oldal címe">
+        <input class="btn btn-default" type="submit" name="sub_uj_oldal" value="Létrehozás">
+		<br>
+	</div>
+	</div>
     </form>
+	
 <?php
 
      
     $results=mysqli_query($conn, "SELECT * FROM oldalak");   
-        
-    
+    echo '<div class = "row">';
+    echo '<div class = "col-md-offset-5 col-md-3">';
     echo '<form action="#" method="post">';
-    echo '<select id="soflow" name="Oldal">';   
+    echo '<select id="soflow" name="Oldal"></div></div>';   
     while ($row = $results->fetch_assoc()){
 
         echo '<option value="'.$row['id'].'">'.utf8_encode($row['cim']).'</option>';        
@@ -98,7 +120,7 @@ if(isset($_POST['submit_modosit'])){
     $conn->query($update);
     
 
-}  
+}       
        
            
 
