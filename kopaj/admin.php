@@ -5,14 +5,14 @@ session_start();
 header ('Content-type: text/html; charset=utf-8');
 
 if(!isset($_SESSION['user_id'])){
-   header("Location: http://".$_SERVER['HTTP_HOST']."/bosch/index.php");
+   header("Location: http://".$_SERVER['HTTP_HOST']."/kopaj/index.php");
    session_destroy();
 }
 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname="bosch_admin";
+$dbname="kopaj_admin";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -98,7 +98,7 @@ if(isset($_POST['submit_modosit'])){
     $conn->query($update);
     
 
-}       
+}  
        
            
 

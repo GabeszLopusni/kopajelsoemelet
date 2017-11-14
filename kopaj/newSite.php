@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname="bosch_admin";
+    $dbname="kopaj_admin";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -15,6 +15,6 @@
 
         $insert="INSERT INTO oldalak (cim) VALUES('".$_POST['title']."')";
         mysqli_query($conn,$insert);
-        header("Location: http://".$_SERVER['HTTP_HOST']."/bosch/admin.php");
+        header("Location: http://".$_SERVER['HTTP_HOST']."/kopaj/admin.php");
     }
 ?>
