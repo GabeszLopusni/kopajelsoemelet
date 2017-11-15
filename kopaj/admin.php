@@ -12,7 +12,7 @@ if(!isset($_SESSION['user_id'])){
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname="bosch_admin";
+$dbname="kopaj_admin";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
